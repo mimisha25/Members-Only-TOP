@@ -36,3 +36,29 @@ VALUES
 `;
 
 
+async function main() {
+    console.log('seeding...');
+    const client = new Client({
+        connectionString: process.env.DB_URL,
+    })
+    await client.connect();
+
+    try {
+        console.log('Creating tables...');
+        await client.query(CREATE_SQL_USERS);
+        await client.query(CREATE_SQL_MESSAGES);
+
+        console.log('Inserting users...');
+        await client.query(INSERT_USERS);
+
+        console.log('Seeding completed!');
+
+    } catch (e) {
+        console.error('Error during seeding...', e);
+        throw e;
+    } finally {
+        await client.end();
+    }
+}
+
+main();
