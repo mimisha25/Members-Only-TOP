@@ -88,4 +88,26 @@ app.post('/message/new', (req, res) => {
 });
 
 
+
+app.get('/', (req, res) => {
+    const isMember = req.user && req.user.membership_status;
+    const isLoggedIn = req.isAuthenticated();
+
+    if (!isLoggedIn) return res.render('index', { messages: [], user: req.user });
+    const query = isMember
+        ? 'SELECT messages.id, messages.title, messages.content, messages.timestamp, users.first_name, users.last_name, messages.user_id, messages.status FROM messages JOIN users ON messages.user_id=users.id'
+        : 'SELECT id, title, content, user_id, status  FROM messages';
+
+    pool.query(query, (e, result) => {
+        if (e) {
+            console.error('Error fetching messages:', e);
+            return res.send('Error fetching messages. Please try again later.');
+        }
+        console.log(result.rows);
+        res.render('index', { messages: result.rows || [], user: req.user });
+    });
+});
+
+
+
 app.listen(8080, () => console.log('Server is running on 8080'))
