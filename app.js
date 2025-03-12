@@ -14,6 +14,7 @@ app.set('view engine', 'ejs');
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
+app.use(express.static(path.join(__dirname, './public')));
 
 
 passport.use(new LocalStrategy(
