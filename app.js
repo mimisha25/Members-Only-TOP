@@ -153,6 +153,67 @@ app.post('/is-admin', (req, res) => {
 })
 
 
+app.post('/message/delete/:id', (req, res) => {
+    if (!req.isAuthenticated()) return res.redirect('/login');
+    // if (!req.user.admin) return res.send('You are not authorized to delete messages.');
+    const isMember = req.user && req.user.membership_status;
+
+    const { id } = req.params;
+    const userId = req.user.id;
+    const isAdmin = req.user.admin;
+    console.log(`Attempting to delete message with ID: ${id} by user: ${userId}`);
+
+    const query = isAdmin
+        ? 'DELETE FROM messages WHERE id=$1 RETURNING*'
+        : 'DELETE FROM messages WHERE id=$1 AND user_id=$2 RETURNING*';
+
+
+    pool.query(query, isAdmin ? [id] : [id, userId],
+        (e, result) => {
+            if (e) {
+                console.error('Error deleting message:', e);
+                return res.send('Error deleting message');
+            }
+            if (result.rows.length === 0) {
+                console.log('No message was deleted. Either the message does not exist or the user does not own it.');
+                return res.send('You are not authorized to delete this message.');
+            }
+            console.log('Message deletion successful:', result.rows);
+            res.redirect('/');
+        }
+    )
+})
+
+app.get('/message/edit/:id', (req, res) => {
+    const messageId = req.params.id;
+    const userId = req.user.id;
+    const query = 'SELECT * FROM messages WHERE id=$1 AND user_id=$2';
+    pool.query(query, [messageId, userId], (e, result) => {
+        if (e) {
+            console.error('Error fetching message for editing:', e);
+            return res.send('Error fetching message');
+        }
+        if (result.rows.length === 0) return res.send('Message not found or you are not authorized to edit this message.');
+        const message = result.rows[0];
+        res.render('editMessage', { message: message });
+    });
+});
+
+app.post('/message/edit/:id', (req, res) => {
+    const messageId = req.params.id;
+    const userId = req.user.id;
+    const { title, content } = req.body;
+    const query = 'UPDATE messages SET title=$1, content=$2 WHERE id=$3 AND user_id=$4 RETURNING *';
+    pool.query(query, [title, content, messageId, userId], (e, result) => {
+        if (e) {
+            console.error('Error updating message:', e);
+            return res.send('Error updating message.');
+        }
+        if (result.rows.length === 0) return res.send('Message not found or you are not authorized to edit this message.');
+        console.log('Message updated successfully:', result.rows);
+        res.redirect('/');
+    });
+});
 
 
 app.listen(8080, () => console.log('Server is running on 8080'))
