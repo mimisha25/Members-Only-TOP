@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Messages</h1>
+    <% if (user) { %>
+        <a href="/message/new">Create a new message</a>
+        <% } %>
+
+            <% if (messages.length===0) { %>
+                <p>No messages available.</p>
+                <% } else { %>
+                    <% messages.forEach(message=> { %>
+                        <div <% if (message.status==='inappropriate' && user.admin) { %> style="color: grey;" <% } %>>
+                                <% if (message.status==='inappropriate' ) { %>
+                                    <% if (!user.admin) { %>
+                                        <p style="color: red; font-weight: bold;">This message has been removed by
+                                            the
+                                            moderator for inappropriate content.</p>
+                                        <% } else { %>
+                                            <h3>
+                                                <%= message.title %>
+                                            </h3>
+                                            <p>
+                                                <%= message.content %>
+                                            </p>
+                                            <p>Date: <%= message.timestamp %>
+                                            </p>
+                                            <% } %>
+                                                <% } else { %>
+                                                    <h3>
+                                                        <%= message.title %>
+                                                    </h3>
+                                                    <p>
+                                                        <%= message.content %>
+                                                    </p>
+                                                    <% if (user && (user.admin || user.membership_status)) { %>
+                                                        <p>Date: <%= message.timestamp %>
+                                                        </p>
+                                                        <% } %>
+                                                            <% } %>
+
+                                                                <% if (user) { %>
+                                                                    <% if (user.membership_status) { %>
+                                                                        <p>Author: <%= message.first_name %>
+                                                                                <%= message.last_name %>
+                                                                        </p>
+                                                                        <% } else { %>
+                                                                            <p>Author: *****</p>
+                                                                            <p>Date: *****</p>
+                                                                            <% } %>
+                                                                                <% if (message.user_id===user.id) { %>
+                                                                                    <form
+                                                                                        action="/message/edit/<%= message.id %>"
+                                                                                        method="GET">
+                                                                                        <button
+                                                                                            type="submit">Edit</button>
+                                                                                    </form>
+                                                                                    <% } %>
+
+                                                                                        <% if (message.user_id===user.id
+                                                                                            || user.admin) { %>
+                                                                                            <form
+                                                                                                action="/message/delete/<%= message.id %>"
+                                                                                                method="POST">
+                                                                                                <button
+                                                                                                    type="submit">Delete</button>
+                                                                                            </form>
+                                                                                            <% } %>
+
+
+                                                                                                <% if (user.admin) { %>
+                                                                                                    <form
+                                                                                                        action="/message/mark-inappropriate/<%= message.id %>"
+                                                                                                        method="POST">
+                                                                                                        <button
+                                                                                                            type="submit">Mark
+                                                                                                            as
+                                                                                                            Inappropriate</button>
+                                                                                                    </form>
+                                                                                                    <% } %>
+                                                                                                        <% } %>
+
+                        </div>
+                        <% }); %>
+                            <% } %>
+                                <% if (user) { %>
+                                    <a href="/logout">Log Out</a>
+                                    <% } %>
+
+</body>
+
+</html>
