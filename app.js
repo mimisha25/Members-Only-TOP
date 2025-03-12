@@ -128,6 +128,11 @@ app.post('/join-club', (req, res) => {
     } else res.send('Incorrect passcode');
 });
 
-
+app.get('/logout', (req, res) => {
+    req.logout((err) => {
+        if (err) return res.send('Error logging out');
+        res.redirect('/');
+    });
+});
 
 app.listen(8080, () => console.log('Server is running on 8080'))
