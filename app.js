@@ -135,4 +135,24 @@ app.get('/logout', (req, res) => {
     });
 });
 
+app.get('/is-admin', (req, res) => {
+    res.render('isAdmin')
+})
+
+app.post('/is-admin', (req, res) => {
+    const { passcode } = req.body;
+    if (passcode === 'admin') {
+        pool.query(
+            'UPDATE users SET admin=true WHERE email =$1 RETURNING *',
+            [req.user.email],
+            (e, result) => {
+                if (e) return res.send('Error updating user role');
+                res.redirect('/');
+            })
+    } else res.send('Invalid passcode');
+})
+
+
+
+
 app.listen(8080, () => console.log('Server is running on 8080'))
