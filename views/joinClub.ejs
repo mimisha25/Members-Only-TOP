@@ -1,17 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('./partials/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
     <form action="/join-club" method="POST">
         <input type="text" name="passcode" placeholder="Enter Secret Passcode" required />
         <button type="submit">Join Club</button>
     </form>
-</body>
-
-</html>
+    <%- include('./partials/footer') %>
