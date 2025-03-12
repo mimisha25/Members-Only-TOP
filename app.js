@@ -215,5 +215,29 @@ app.post('/message/edit/:id', (req, res) => {
     });
 });
 
+app.post('/message/mark-inappropriate/:id', (req, res) => {
+    if (!req.isAuthenticated() || !req.user.admin) return res.send('You are not authorized to perform this action');
+    const { id } = req.params;
+    const query = `
+    UPDATE messages
+    SET status = CASE
+        WHEN status = 'inappropriate' THEN 'appropriate'
+        ELSE 'inappropriate'
+    END
+    WHERE id = $1
+    RETURNING *;
+`;
+    pool.query(query, [id], (e, result) => {
+        if (e) {
+            console.error('Error marking message as inappropriate:', e);
+            return res.send('Error marking message.');
+        }
+        if (result.rows.length === 0) return res.send('Message not found.')
+        console.log('Message marked as inappropriate:', result.rows);
+        res.redirect('/');
+    })
+})
+
+
 
 app.listen(8080, () => console.log('Server is running on 8080'))
