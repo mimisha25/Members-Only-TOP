@@ -109,5 +109,25 @@ app.get('/', (req, res) => {
 });
 
 
+app.get('/join-club', (req, res) => {
+    if (!req.isAuthenticated()) return res.redirect('/login');
+    res.render('joinClub');
+})
+
+app.post('/join-club', (req, res) => {
+    const { passcode } = req.body;
+    const correctPasscode = process.env.SECRET_PASSCODE;
+    if (passcode === correctPasscode) {
+        pool.query(
+            'UPDATE users SET membership_status = TRUE WHERE id = $1',
+            [req.user.id],
+            (e, result) => {
+                if (e) return res.render('Error updating membership status');
+                res.redirect('/');
+            });
+    } else res.send('Incorrect passcode');
+});
+
+
 
 app.listen(8080, () => console.log('Server is running on 8080'))
