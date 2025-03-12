@@ -60,6 +60,12 @@ app.post('/sign-up', async (req, res) => {
 })
 
 
+app.get('/login', (req, res) => res.render('login'));
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+}));
+
 
 
 app.listen(8080, () => console.log('Server is running on 8080'))
