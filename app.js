@@ -66,6 +66,26 @@ app.post('/login', passport.authenticate('local', {
     failureRedirect: '/login'
 }));
 
+app.get('/message/new', (req, res) => {
+    if (!req.isAuthenticated()) return res.redirect('/login');
+    res.render('newMessage');
+});
+
+
+app.post('/message/new', (req, res) => {
+    if (!req.isAuthenticated()) return res.redirect('/login');
+
+    const { title, content } = req.body;
+
+    pool.query(
+        'INSERT INTO messages (title, content, user_id) VALUES ($1, $2, $3)',
+        [title, content, req.user.id],
+        (e, result) => {
+            if (e) return res.render('Error creating message');
+            res.redirect('/');
+        }
+    );
+});
 
 
 app.listen(8080, () => console.log('Server is running on 8080'))
