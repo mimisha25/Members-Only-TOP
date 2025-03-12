@@ -43,4 +43,23 @@ passport.deserializeUser((id, done) => {
 
 app.use(passport.session());
 
+app.get('/sign-up', (req, res) => res.render('signup'));
+
+app.post('/sign-up', async (req, res) => {
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
+    if (password !== confirmPassword) return res.send('Password do not match!');
+    const hashedPassword = await bcrypt.hash(password, 10);
+    pool.query(
+        'INSERT INTO users (first_name, last_name, email, password, membership_status) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+        [firstName, lastName, email, hashedPassword, false],
+        (e, result) => {
+            if (e) return res.render('Error creating user');
+            res.redirect('/login');
+        }
+    )
+})
+
+
+
+
 app.listen(8080, () => console.log('Server is running on 8080'))
