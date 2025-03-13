@@ -1,8 +1,40 @@
 <%- include('./partials/header') %>
 
-    <form action="/login" method="POST">
-        <input type="email" name="username" placeholder="Email" required />
-        <input type="password" name="password" placeholder="Password" required />
-        <button type="submit">Login</button>
+
+    <h1>Log In</h1>
+    <form class="row g-3 form-edit-product validated-form" method="POST" action="/login" novalidate>
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Enter email: </span>
+                <input type="email" id="email" class="form-control" name="username" aria-label="Username"
+                    aria-describedby="basic-addon1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Enter password: </span>
+                <input type="password" id="password" class="form-control" name="password" aria-label="Username"
+                    aria-describedby="basic-addon1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
     </form>
-    <%- include('./partials/footer') %>
+    <a href="/categories" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
+
+
+    <%- include('./partials/validator', {name: 'validated-form' }) %>
+        <%- include('./partials/footer') %>
