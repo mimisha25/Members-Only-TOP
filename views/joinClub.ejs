@@ -1,7 +1,25 @@
 <%- include('./partials/header') %>
 
-    <form action="/join-club" method="POST">
-        <input type="text" name="passcode" placeholder="Enter Secret Passcode" required />
-        <button type="submit">Join Club</button>
+    <h1>Join the club</h1>
+    <form class="row g-3 form-edit-product validated-form" method="POST" action="/join-club" novalidate>
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Enter the secret passcode: </span>
+                <input type="text" id="passcode" class="form-control" name="passcode" aria-label="Username"
+                    aria-describedby="basic-addon1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
     </form>
-    <%- include('./partials/footer') %>
+    <a href="/categories" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
+
+
+    <%- include('./partials/validator', {name: 'validated-form' }) %>
+        <%- include('./partials/footer') %>
