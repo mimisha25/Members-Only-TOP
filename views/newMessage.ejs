@@ -1,7 +1,37 @@
 <%- include('./partials/header') %>
-    <form action="/message/new" method="POST">
-        <input type="text" name="title" placeholder="Message Title" required />
-        <textarea name="content" placeholder="Message Content" required></textarea>
-        <button type="submit">Create Message</button>
+
+
+    <h1>Post new message</h1>
+    <form class="row g-3 form-edit-product validated-form" method="POST" action="/message/new" novalidate>
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Title: </span>
+                <input type="text" id="title" class="form-control" name="title" aria-label="Username"
+                    aria-describedby="basic-addon1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Message: </span>
+                <input type="text" id="content" class="form-control" name="content" aria-label="Username"
+                    aria-describedby="basic-addon1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
     </form>
-    <%- include('./partials/footer') %>
+    <a href="/" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
+
+    <%- include('./partials/validator', {name: 'validated-form' }) %>
+        <%- include('./partials/footer') %>
