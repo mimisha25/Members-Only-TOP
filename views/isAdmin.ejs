@@ -1,7 +1,24 @@
 <%- include('./partials/header') %>
     <h1>Become an Admin</h1>
-    <form action="/is-admin" method="POST">
-        <input type="password" name="passcode" placeholder="Enter Secret Passcode" required />
-        <button type="submit">Submit</button>
+    <form class="row g-3 form-edit-product validated-form" method="POST" action="/is-admin" novalidate>
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Password: </span>
+                <input type="text" id="passcode" class="form-control" name="passcode" aria-label="Username"
+                    aria-describedby="basic-addon1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
     </form>
-    <%- include('./partials/footer') %>
+    <a href="/categories" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
+
+
+    <%- include('./partials/validator', {name: 'validated-form' }) %>
+        <%- include('./partials/footer') %>
