@@ -63,7 +63,7 @@ app.post('/sign-up', async (req, res) => {
 
 app.get('/login', (req, res) => res.render('login'));
 app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/forum',
     failureRedirect: '/login'
 }));
 
@@ -83,14 +83,14 @@ app.post('/message/new', (req, res) => {
         [title, content, req.user.id],
         (e, result) => {
             if (e) return res.render('Error creating message');
-            res.redirect('/');
+            res.redirect('/forum');
         }
     );
 });
 
 
 
-app.get('/', (req, res) => {
+app.get('/forum', (req, res) => {
     const isMember = req.user && req.user.membership_status;
     const isLoggedIn = req.isAuthenticated();
 
@@ -124,7 +124,7 @@ app.post('/join-club', (req, res) => {
             [req.user.id],
             (e, result) => {
                 if (e) return res.render('Error updating membership status');
-                res.redirect('/');
+                res.redirect('/forum');
             });
     } else res.send('Incorrect passcode');
 });
@@ -148,7 +148,7 @@ app.post('/is-admin', (req, res) => {
             [req.user.email],
             (e, result) => {
                 if (e) return res.send('Error updating user role');
-                res.redirect('/');
+                res.redirect('/forum');
             })
     } else res.send('Invalid passcode');
 })
@@ -180,7 +180,7 @@ app.post('/message/delete/:id', (req, res) => {
                 return res.send('You are not authorized to delete this message.');
             }
             console.log('Message deletion successful:', result.rows);
-            res.redirect('/');
+            res.redirect('/forum');
         }
     )
 })
@@ -212,7 +212,7 @@ app.post('/message/edit/:id', (req, res) => {
         }
         if (result.rows.length === 0) return res.send('Message not found or you are not authorized to edit this message.');
         console.log('Message updated successfully:', result.rows);
-        res.redirect('/');
+        res.redirect('/forum');
     });
 });
 
@@ -235,7 +235,7 @@ app.post('/message/mark-inappropriate/:id', (req, res) => {
         }
         if (result.rows.length === 0) return res.send('Message not found.')
         console.log('Message marked as inappropriate:', result.rows);
-        res.redirect('/');
+        res.redirect('/forum');
     })
 })
 
