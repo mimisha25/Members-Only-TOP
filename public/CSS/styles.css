@@ -1,3 +1,12 @@
 .nav-link {
     color: white;
 }
+
+
+.button-group {
+    margin: 0 30%;
+
+    button {
+        width: 80px;
+    }
+}
