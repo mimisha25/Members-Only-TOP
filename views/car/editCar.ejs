@@ -1,0 +1,48 @@
+<%- include('../partials/header') %>
+
+
+    <h1>Edit the product</h1>
+    <form class="row g-3 form-edit-product" method="POST" action="/cars-details/<%=car.id%>?_method=PATCH">
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Title: </span>
+                <input type="text" id="title" class="form-control" name="title" value="<%= car.title %>"
+                    aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="input-group">
+                <span class="input-group-text">Description</span>
+                <textarea aria-label="With textarea" name="description" class="form-control" id="description" cols="10"
+                    rows="5">
+                            <%=car.description%>
+                        </textarea>
+            </div>
+        </div>
+
+
+        <div class="col-md-12 mb-3">
+            <label for="basic-url" class="form-label">Image URL</label>
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon3">https://example.com/</span>
+                <input type="text" class="form-control" id="image" aria-describedby="basic-addon3 basic-addon4">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
+    </form>
+    <a href="/cars" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
+
+
+
+    <%- include('../partials/footer') %>
