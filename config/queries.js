@@ -4,7 +4,7 @@ const { v4: uuid } = require('uuid');
 
 
 
-async function isAdmin() {
+async function isAdmin(email) {
     try {
         const { rows } = await pool.query(
             'UPDATE users SET admin=true WHERE email=$1 RETURNING *',
