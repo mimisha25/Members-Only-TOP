@@ -50,6 +50,10 @@ const isAdminRouter = require('./routes/forum/admin/isAdminRouter.js');
 const messageRouter = require('./routes/forum/message/messageRouter.js');
 const forumRouter = require('./routes/forum/forumRouter.js');
 const logoutRouter = require('./routes/forum/logoutRouter.js');
+const showCategoryItemRouter = require('./routes/category/showCategory.js');
+const categoryRouter = require('./routes/category/categoryRouter.js')
+const carRouter = require('./routes/category/carRouter.js');
+
 
 app.use('/', loginRouter);
 app.use('/', signupRouter);
@@ -58,5 +62,8 @@ app.use('/', isAdminRouter);
 app.use('/', messageRouter);
 app.use('/', forumRouter);
 app.use('/', logoutRouter);
+app.use('/', categoryRouter);
+app.use('/', showCategoryItemRouter);
+app.use('/', carRouter);
 
 app.listen(8080, () => console.log('Server is running on 8080'))
