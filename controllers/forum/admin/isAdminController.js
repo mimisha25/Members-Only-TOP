@@ -3,6 +3,9 @@ const db = require('../../../config/queries');
 async function isAdmin(req, res) {
     try {
         const { passcode } = req.body;
+        if (!req.user || !req.user.email) {
+            return res.status(401).send('User is not authenticated'); // or redirect to login
+        }
         if (passcode === 'admin') {
             const updateUser = await db.isAdmin(req.user.email);
             if (!updateUser) return res.status(400).send('User not found or already an admin');
