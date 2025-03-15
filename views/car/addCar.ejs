@@ -1,0 +1,73 @@
+<%- include('../partials/header') %>
+
+
+    <h1>Edit the product</h1>
+    <form class="row g-3 form-edit-product validated-form" method="POST" action="/cars/add" novalidate>
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Title: </span>
+                <input type="text" id="title" class="form-control" name="title" aria-label="Username"
+                    aria-describedby="basic-addon1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-12">
+            <div class="input-group">
+                <span class="input-group-text">Description</span>
+                <textarea required aria-label="With textarea" name="description" class="form-control" id="description"
+                    cols="10" rows="5" minlength="30" maxlength="250"></textarea>
+                <div class="invalid-feedback">
+                    The length of character must be between 30 and 250.
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-4">
+            <div class="input-group mb-3">
+                <span class="input-group-text">Category</span>
+                <select id="category_name" name="category_id" class="form-control" required>
+                    <% categories.forEach(function(category) { %>
+                        <option value="<%= category.id %>">
+                            <%= category.name %>
+                        </option>
+                        <% }); %>
+                </select>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 mb-3">
+            <label for="basic-url" class="form-label">Image URL</label>
+            <div class="input-group">
+                <span class="input-group-text" id="basic-addon3">https://example.com/</span>
+                <input type="text" class="form-control" id="image_url" name="image_url"
+                    aria-describedby="basic-addon3 basic-addon4">
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <input type="file" class="form-control" id="inputGroupFile02">
+                <label class="input-group-text" for="inputGroupFile02">Upload</label>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
+    </form>
+    <a href="/products" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
+
+
+    <%- include('../partials/validator', {name: 'validated-form' }) %>
+
+        <%- include('../partials/footer') %>
