@@ -1,0 +1,39 @@
+<%- include('../partials/header') %>
+    <h1>Edit the category</h1>
+
+    <form class="row g-3 form-edit-product validated-form" method="POST" action="/categories/add" novalidate>
+        <div class="col-md-12">
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Name: </span>
+                <input type="text" id="name" class="form-control" name="name" aria-label="Username"
+                    aria-describedby="basic-addon1" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="input-group">
+                <span class="input-group-text">Description</span>
+                <textarea required aria-label="With textarea" name="description" class="form-control" id="description"
+                    cols="10" rows="5" minlength="30" maxlength="250"></textarea>
+                <div class="invalid-feedback">
+                    The length of character must be between 30 and 250.
+                </div>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary"> Submit</button>
+        </div>
+    </form>
+    <a href="/categories" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
+
+
+    <%- include('../partials/validator', {name: 'validated-form' }) %>
+        <%- include('../partials/footer') %>
