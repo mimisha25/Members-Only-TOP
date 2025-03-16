@@ -1,29 +1,88 @@
 <%- include('./head') %>
 
     <body class="d-flex flex-column vh-100">
-        <nav class="navbar bg-dark border-bottom  sticky-top border-body" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="/"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
-                        fill="white" class="bi bi-suit-spade" viewBox="0 0 16 16">
-                        <path
-                            d="M8 0a.5.5 0 0 1 .429.243c1.359 2.265 2.925 3.682 4.25 4.882q.144.128.282.255C14.308 6.604 15.5 7.747 15.5 9.5a4 4 0 0 1-5.406 3.746c.235.39.491.782.722 1.131.434.659-.01 1.623-.856 1.623H6.04c-.845 0-1.29-.964-.856-1.623.263-.397.51-.777.728-1.134A4 4 0 0 1 .5 9.5c0-1.753 1.192-2.896 2.539-4.12l.281-.255c1.326-1.2 2.892-2.617 4.251-4.882A.5.5 0 0 1 8 0M3.711 6.12C2.308 7.396 1.5 8.253 1.5 9.5a3 3 0 0 0 5.275 1.956.5.5 0 0 1 .868.43c-.094.438-.33.932-.611 1.428a29 29 0 0 1-1.013 1.614.03.03 0 0 0-.005.018.07.07 0 0 0 .024.054h3.924a.07.07 0 0 0 .024-.054.03.03 0 0 0-.005-.018c-.3-.455-.658-1.005-.96-1.535-.294-.514-.57-1.064-.664-1.507a.5.5 0 0 1 .868-.43A3 3 0 0 0 14.5 9.5c0-1.247-.808-2.104-2.211-3.38L12 5.86c-1.196-1.084-2.668-2.416-4-4.424-1.332 2.008-2.804 3.34-4 4.422l-.289.261z" />
-                    </svg></a>
-                <a class="nav-link" aria-current="page" href="/cars">Cars</a>
-                <a class="nav-link" href="/categories">Category</a>
-                <a class="nav-link" href="/news">News</a>
-                <a class="nav-link" href="/forum">Forum</a>
+        <header class="p-3 text-bg-dark">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                            <use xlink:href="#bootstrap"></use>
+                        </svg>
+                    </a>
 
-                <a href="/login">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white"
-                        class="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                        <path fill-rule="evenodd"
-                            d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1" />
-                    </svg>
-                </a>
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
 
+                        <li><a href="/" class="nav-link px-2 text-secondary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white"
+                                    class="bi bi-suit-spade" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 0a.5.5 0 0 1 .429.243c1.359 2.265 2.925 3.682 4.25 4.882q.144.128.282.255C14.308 6.604 15.5 7.747 15.5 9.5a4 4 0 0 1-5.406 3.746c.235.39.491.782.722 1.131.434.659-.01 1.623-.856 1.623H6.04c-.845 0-1.29-.964-.856-1.623.263-.397.51-.777.728-1.134A4 4 0 0 1 .5 9.5c0-1.753 1.192-2.896 2.539-4.12l.281-.255c1.326-1.2 2.892-2.617 4.251-4.882A.5.5 0 0 1 8 0M3.711 6.12C2.308 7.396 1.5 8.253 1.5 9.5a3 3 0 0 0 5.275 1.956.5.5 0 0 1 .868.43c-.094.438-.33.932-.611 1.428a29 29 0 0 1-1.013 1.614.03.03 0 0 0-.005.018.07.07 0 0 0 .024.054h3.924a.07.07 0 0 0 .024-.054.03.03 0 0 0-.005-.018c-.3-.455-.658-1.005-.96-1.535-.294-.514-.57-1.064-.664-1.507a.5.5 0 0 1 .868-.43A3 3 0 0 0 14.5 9.5c0-1.247-.808-2.104-2.211-3.38L12 5.86c-1.196-1.084-2.668-2.416-4-4.424-1.332 2.008-2.804 3.34-4 4.422l-.289.261z" />
+                                </svg>
+                            </a></li>
+                        <li><a href="/cars" class="nav-link px-2 text-white">Cars</a></li>
+                        <li><a href="/news" class="nav-link px-2 text-white">News</a></li>
+                        <li><a href="/forum" class="nav-link px-2 text-white">Forum</a></li>
+                        <li class="nav-item dropdown d-flex flex-row">
+
+                            <div class="d-flex  align-items-center">
+                                <div> <a href="/categories" class="nav-link px-2 text-white">Category</a>
+                                </div>
+                                <div class="">
+
+                                    <a class="nav-link  text-white" data-bs-toggle="dropdown" aria-expanded="false"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-menu-button-wide" viewBox="0 0 16 16">
+                                            <path
+                                                d="M0 1.5A1.5 1.5 0 0 1 1.5 0h13A1.5 1.5 0 0 1 16 1.5v2A1.5 1.5 0 0 1 14.5 5h-13A1.5 1.5 0 0 1 0 3.5zM1.5 1a.5.5 0 0 0-.5.5v2a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-2a.5.5 0 0 0-.5-.5z" />
+                                            <path
+                                                d="M2 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5m10.823.323-.396-.396A.25.25 0 0 1 12.604 2h.792a.25.25 0 0 1 .177.427l-.396.396a.25.25 0 0 1-.354 0M0 8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm1 3v2a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2zm14-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v2zM2 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0 4a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5" />
+                                        </svg>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="/categories/Tesla">Tesla</a></li>
+                                        <li><a class="dropdown-item" href="/categories/Lamborghini">Lamborghini</a></li>
+                                        <li><a class="dropdown-item" href="/categories/Rolls%20Royce">Rolls Royce</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/categories/Bugatti">Bugatti</a></li>
+                                        <li><a class="dropdown-item" href="/categories/Mercedes">Mercedes</a></li>
+                                        <li><a class="dropdown-item" href="/categories/Audi">Audi</a></li>
+                                        <li><a class="dropdown-item" href="/categories/Bentley">Bentley</a></li>
+                                        <li><a class="dropdown-item" href="/categories/Maserati">Maserati</a></li>
+                                        <li><a class="dropdown-item" href="/categories/McLaren">McLaren</a></li>
+                                        <li><a class="dropdown-item" href="/categories/Ferrari">Ferrari</a></li>
+                                        <li><a class="dropdown-item" href="/categories/Aston%20Martin">Aston Martin</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="text-end">
+                        <% if (user) { %>
+                            <div class="dropdown text-end">
+                                <a href="#"
+                                    class="d-block link-body-emphasis text-decoration-none dropdown-toggle text-light"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Hi, <%=user.first_name%>
+                                </a>
+                                <ul class="dropdown-menu text-small">
+                                    <li><a class="dropdown-item" href="/is-admin">Admin</a></li>
+                                    <li><a class="dropdown-item" href="/join-club">Membership</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li> <a role="button" class="btn btn-light m-2" href="/logout">Log Out</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <% } else { %>
+                                <a role="button" class="btn btn-outline-light me-2" href="/login">Login</a>
+                                <a role="button" class="btn btn-warning" href="/sign-up">Sign-up</a>
+                                <% } %>
+                    </div>
+                </div>
             </div>
+        </header>
 
-            </div>
-        </nav>
         <main>
