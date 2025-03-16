@@ -1,67 +1,70 @@
 <%- include('../partials/header') %>
     <h1>Categories</h1>
 
-    <a href="/categories/add" role="button" class="btn btn-warning">Add category</a>
+    <%if(admin){%><a href="/categories/add" role="button" class="btn btn-warning">Add category</a>
+        <%}%>
 
 
-    <div class="products d-flex flex-wrap justify-content-evenly  row-gap-3">
+            <div class="products d-flex flex-wrap justify-content-evenly  row-gap-3">
 
-        <% categories.forEach(category=> { %>
+                <% categories.forEach(category=> { %>
 
-            <div class="col">
-                <div class="card  h-100 mx-auto p-4" style="width: 23rem;">
+                    <div class="col">
+                        <div class="card  h-100 mx-auto p-4" style="width: 23rem;">
 
-                    <div class="card-body">
-                        <h5 class="card-title  text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-stars" viewBox="0 0 16 16">
-                                <path
-                                    d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z" />
-                            </svg>
-                            <%= category.name %>
-                        </h5>
-                        <p class="card-text text-center">
-                            <%= category.description.length> 100 ? category.description.substring(0, 100) +
-                                '...'
-                                :
-                                category.description %>
-                        </p>
-                        <div class="card-footer text-body-secondary">
-                            <form action="/categories/archive/<%= category.id %>" method="POST" style="display:inline;">
-                                <button type="submit" class="btn btn-warning btn-sm">Archive
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="white"
-                                        class="bi bi-archive-fill" viewBox="0 0 16 16">
+                            <div class="card-body">
+                                <h5 class="card-title  text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-stars" viewBox="0 0 16 16">
                                         <path
-                                            d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8z" />
+                                            d="M7.657 6.247c.11-.33.576-.33.686 0l.645 1.937a2.89 2.89 0 0 0 1.829 1.828l1.936.645c.33.11.33.576 0 .686l-1.937.645a2.89 2.89 0 0 0-1.828 1.829l-.645 1.936a.361.361 0 0 1-.686 0l-.645-1.937a2.89 2.89 0 0 0-1.828-1.828l-1.937-.645a.361.361 0 0 1 0-.686l1.937-.645a2.89 2.89 0 0 0 1.828-1.828zM3.794 1.148a.217.217 0 0 1 .412 0l.387 1.162c.173.518.579.924 1.097 1.097l1.162.387a.217.217 0 0 1 0 .412l-1.162.387A1.73 1.73 0 0 0 4.593 5.69l-.387 1.162a.217.217 0 0 1-.412 0L3.407 5.69A1.73 1.73 0 0 0 2.31 4.593l-1.162-.387a.217.217 0 0 1 0-.412l1.162-.387A1.73 1.73 0 0 0 3.407 2.31zM10.863.099a.145.145 0 0 1 .274 0l.258.774c.115.346.386.617.732.732l.774.258a.145.145 0 0 1 0 .274l-.774.258a1.16 1.16 0 0 0-.732.732l-.258.774a.145.145 0 0 1-.274 0l-.258-.774a1.16 1.16 0 0 0-.732-.732L9.1 2.137a.145.145 0 0 1 0-.274l.774-.258c.346-.115.617-.386.732-.732z" />
                                     </svg>
-                                </button>
-                            </form>
+                                    <%= category.name %>
+                                </h5>
+                                <p class="card-text text-center">
+                                    <%= category.description.length> 100 ? category.description.substring(0, 100) +
+                                        '...'
+                                        :
+                                        category.description %>
+                                </p>
+                                <div class="card-footer text-body-secondary">
+                                    <%if(admin){%>
+                                        <form action="/categories/archive/<%= category.id %>" method="POST"
+                                            style="display:inline;">
+                                            <button type="submit" class="btn btn-warning btn-sm">Archive
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                                    fill="white" class="bi bi-archive-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M12.643 15C13.979 15 15 13.845 15 12.5V5H1v7.5C1 13.845 2.021 15 3.357 15zM5.5 7h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1M.8 1a.8.8 0 0 0-.8.8V3a.8.8 0 0 0 .8.8h14.4A.8.8 0 0 0 16 3V1.8a.8.8 0 0 0-.8-.8z" />
+                                                </svg>
+                                            </button>
+                                        </form>
 
-                            <form action="/categories/prevent-deletion/<%= category.id %>" method="POST"
-                                style="display:inline;">
-                                <button type="submit" class="btn btn-danger btn-sm">Delete
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor"
-                                        class="bi bi-trash3-fill" viewBox="0 0 16 16">
-                                        <path
-                                            d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-                                    </svg>
-                                </button>
-                            </form>
+                                        <form action="/categories/prevent-deletion/<%= category.id %>" method="POST"
+                                            style="display:inline;">
+                                            <button type="submit" class="btn btn-danger btn-sm">Delete
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13"
+                                                    fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+                                                    <path
+                                                        d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+                                                </svg>
+                                            </button>
+                                        </form>
+                                        <%}%>
 
+                                            <a href="/categories/<%= category.name %>" class="btn btn-primary btn-sm">
+                                                Details <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                                                </svg></a>
+                                </div>
 
-                            <a href="/categories/<%= category.name %>" class="btn btn-primary btn-sm">
-                                Details <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                                </svg></a>
+                            </div>
                         </div>
-
                     </div>
-                </div>
+                    <% }) %>
             </div>
-            <% }) %>
-    </div>
 
 
-    <%- include('../partials/footer') %>
+            <%- include('../partials/footer') %>

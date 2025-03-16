@@ -1,45 +1,46 @@
 <%- include('../partials/header') %>
 
     <h1 style="color: black; text-align: center;">Products</h1>
+    <%if(admin){%>
+        <a href="/cars/add" role="button" class="btn btn-warning">Add product</a>
+        <%}%>
+            <div class="products d-flex flex-wrap justify-content-evenly  row-gap-3">
 
-    <a href="/cars/add" role="button" class="btn btn-warning">Add product</a>
-    <div class="products d-flex flex-wrap justify-content-evenly  row-gap-3">
+                <% cars.forEach(car=> { %>
 
-        <% cars.forEach(car=> { %>
+                    <div class="col">
+                        <div class="card  h-100 mx-auto p-4" style="width: 23rem;">
+                            <div class="img-card">
+                                <img src="<%= car.image %>" class="card-img-top img-thumbnail" alt="...">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title  text-center">
+                                    <%= car.title %>
+                                </h5>
+                                <p class="card-text text-center">
+                                    <%= car.description.length> 100 ? car.description.substring(0, 100) + '...'
+                                        :
+                                        car.description %>
+                                </p>
 
-            <div class="col">
-                <div class="card  h-100 mx-auto p-4" style="width: 23rem;">
-                    <div class="img-card">
-                        <img src="<%= car.image %>" class="card-img-top img-thumbnail" alt="...">
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title  text-center">
-                            <%= car.title %>
-                        </h5>
-                        <p class="card-text text-center">
-                            <%= car.description.length> 100 ? car.description.substring(0, 100) + '...'
-                                :
-                                car.description %>
-                        </p>
-
-                        <div class="card-footer text-body-secondary">
-                            <button type="button" class="btn btn-warning m-1">
-                                <%=car.category_name%>
-                            </button>
+                                <div class="card-footer text-body-secondary">
+                                    <button type="button" class="btn btn-warning m-1">
+                                        <%=car.category_name%>
+                                    </button>
 
 
-                            <a href="/car-details/<%= car.id %>" class="btn btn-primary  m-1">
-                                Details <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                    <path fill-rule="evenodd"
-                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                                </svg></a>
+                                    <a href="/car-details/<%= car.id %>" class="btn btn-primary  m-1">
+                                        Details <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                            <path fill-rule="evenodd"
+                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                                        </svg></a>
+                                </div>
+
+                            </div>
                         </div>
-
                     </div>
-                </div>
+                    <% }) %>
             </div>
-            <% }) %>
-    </div>
 
-    <%- include('../partials/footer') %>
+            <%- include('../partials/footer') %>
