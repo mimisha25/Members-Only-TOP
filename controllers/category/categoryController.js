@@ -3,9 +3,10 @@ const db = require('../../config/queriesCar');
 
 async function getCategories(req, res) {
     try {
+        const admin = req.user.admin;
         const categories = await db.getCategories();
         console.log('Categories: ', categories);
-        res.render('category/categories', { categories })
+        res.render('category/categories', { categories, admin })
     } catch (e) {
         console.log('Error in getting categories: ', e)
         throw e;
@@ -16,7 +17,6 @@ async function archiveCategory(req, res) {
     try {
         const { id } = req.params;
         await db.archiveCategoryById(id);
-
         res.redirect('/categories');
     } catch (e) {
         console.error('Error archiving category: ', e);
@@ -44,7 +44,6 @@ async function deletion(req, res) {
 }
 async function createCategoryPost(req, res) {
     const { name, description } = req.body;
-
     try {
         await db.insertCategory(name, description);
         res.redirect('/categories');

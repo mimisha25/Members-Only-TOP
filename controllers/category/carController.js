@@ -2,9 +2,10 @@ const db = require('../../config/queriesCar');
 
 async function getCars(req, res) {
     try {
+        const admin = req.user.admin;
         const cars = await db.getCars();
         console.log('Products: ', cars);
-        res.render('car/cars', { cars })
+        res.render('car/cars', { cars, admin })
     } catch (e) {
         console.log('Error in getting cars: ', e)
         throw e;
@@ -14,9 +15,10 @@ async function getCars(req, res) {
 async function getCarDetails(req, res) {
     const { id } = req.params;
     try {
+        const admin = req.user.admin;
         const car = await db.getCarDetails(id);
         if (!car) return res.status(404).send('Car was not found!');
-        res.render('car/carDetails', { car })
+        res.render('car/carDetails', { car, admin })
     } catch (e) {
         console.error('Error in getting details of car in controller: ', e);
         throw e;

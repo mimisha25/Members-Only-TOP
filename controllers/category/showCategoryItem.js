@@ -2,6 +2,7 @@ const db = require('../../config/queriesCar');
 
 async function getCarsByCategory(req, res) {
     try {
+        const admin = req.user.admin;
         const { categoryName } = req.params;
         const categories = await db.getCategories();
         const category = categories.find(cat => cat.name.trim().toLowerCase() === categoryName.trim().toLowerCase());
@@ -9,7 +10,7 @@ async function getCarsByCategory(req, res) {
             return res.status(404).send('Category not found nnn');
         }
         const cars = await db.getCarsByCategory(category.id);
-        res.render('category/category', { cars, categoryName: category.name })
+        res.render('category/category', { cars, categoryName: category.name, admin })
     } catch (e) {
         console.error('Error fetching products in category: ', e);
         res.status(500).send('Error fetching cars');
