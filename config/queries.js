@@ -33,13 +33,9 @@ async function member(id) {
 
 async function createMessage(title, content, userId) {
     try {
-        console.log('Inserting message with title:', title, 'content:', content, 'userId:', userId); // Log the inputs
-
         const { rows } = await pool.query(
             'INSERT INTO messages (title, content, user_id) VALUES ($1, $2, $3) RETURNING *',
             [title, content, userId]);
-        console.log('Inserted Message:', rows[0]);  // Log the inserted message
-
         return rows[0];
     } catch (e) {
         console.error('Error creating messages: ', e);
@@ -62,8 +58,6 @@ async function deleteMessage(id, isAdmin, userId) {
 
 async function editMessage(userId, messageId) {
     try {
-        console.log('Querying message with ID:', messageId, 'and user ID:', userId);  // Debugging line
-
         const query = 'SELECT * FROM messages WHERE id=$1 AND user_id=$2';
         const { rows } = await pool.query(query, [messageId, userId]);
         return rows[0];
@@ -110,7 +104,6 @@ function getRandomColor() {
 }
 async function signup(firstName, lastName, email, hashedPassword) {
     try {
-
         const svgProfilePicture = `<?xml version="1.0" encoding="UTF-8"?> 
         <svg xmlns="http://www.w3.org/2000/svg" width="50" height="80" fill=${getRandomColor()} class="bi bi-person-bounding-box img-fluid rounded-start" viewBox="0 0 16 16">
             <path d="M1.5 1a.5.5 0 0 0-.5.5v3a.5.5 0 0 1-1 0v-3A1.5 1.5 0 0 1 1.5 0h3a.5.5 0 0 1 0 1zM11 .5a.5.5 0 0 1 .5-.5h3A1.5 1.5 0 0 1 16 1.5v3a.5.5 0 0 1-1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 1-.5-.5M.5 11a.5.5 0 0 1 .5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 1 0 1h-3A1.5 1.5 0 0 1 0 14.5v-3a.5.5 0 0 1 .5-.5m15 0a.5.5 0 0 1 .5.5v3a1.5 1.5 0 0 1-1.5 1.5h-3a.5.5 0 0 1 0-1h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 1 .5-.5" />
@@ -119,9 +112,7 @@ async function signup(firstName, lastName, email, hashedPassword) {
         const { rows } = await pool.query(
             'INSERT INTO users (first_name, last_name, email, password, membership_status , profile_picture) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
             [firstName, lastName, email, hashedPassword, false, svgProfilePicture]);
-
         return rows[0];
-
     } catch (e) {
         console.error('Error signup user: ', e);
         throw e;

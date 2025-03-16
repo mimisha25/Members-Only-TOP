@@ -4,7 +4,7 @@ async function isAdmin(req, res) {
     try {
         const { passcode } = req.body;
         if (!req.user || !req.user.email) {
-            return res.status(401).send('User is not authenticated'); // or redirect to login
+            return res.status(401).send('User is not authenticated');
         }
         if (passcode === 'admin') {
             const updateUser = await db.isAdmin(req.user.email);

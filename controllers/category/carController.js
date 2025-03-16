@@ -4,7 +4,6 @@ async function getCars(req, res) {
     try {
         const admin = req.user.admin;
         const cars = await db.getCars();
-        console.log('Products: ', cars);
         res.render('car/cars', { cars, admin })
     } catch (e) {
         console.log('Error in getting cars: ', e)
@@ -69,7 +68,6 @@ async function createCarGet(req, res) {
 
 async function createCarPost(req, res) {
     const { title, description, category_id, image } = req.body;
-
     try {
         await db.insertCar(title, description, category_id, image);
         res.redirect('/cars');

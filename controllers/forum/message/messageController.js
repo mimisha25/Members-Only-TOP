@@ -43,7 +43,7 @@ async function editMessage(req, res) {
     try {
         const messageId = req.params.id;
         const userId = req.user.id;
-        console.log('Attempting to fetch message with ID:', messageId, 'for user ID:', userId); // Debugging line
+        console.log('Attempting to fetch message with ID:', messageId, 'for user ID:', userId);
 
         const message = await db.editMessage(userId, messageId);
         if (!message) return res.send('Message not found or you are not authorized to edit this message.');

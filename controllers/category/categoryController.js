@@ -5,7 +5,6 @@ async function getCategories(req, res) {
     try {
         const admin = req.user.admin;
         const categories = await db.getCategories();
-        console.log('Categories: ', categories);
         res.render('category/categories', { categories, admin })
     } catch (e) {
         console.log('Error in getting categories: ', e)
@@ -53,7 +52,6 @@ async function createCategoryPost(req, res) {
 }
 async function createCategoryGet(req, res) {
     try {
-
         res.render('category/addCategory', { title: "Create Product" });
     } catch (e) {
         console.error('Error fetching categories:', e);
