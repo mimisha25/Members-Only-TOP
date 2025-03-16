@@ -5,7 +5,7 @@ const LocalStrategy = require('passport-local');
 const session = require('express-session');
 const { Client } = require('pg');
 const pool = require('./config/pool');
-const path = require('node:path')
+const path = require('path')
 const methodOverride = require('method-override');
 require('dotenv').config();
 const app = express();
@@ -53,7 +53,11 @@ const logoutRouter = require('./routes/forum/logoutRouter.js');
 const showCategoryItemRouter = require('./routes/category/showCategory.js');
 const categoryRouter = require('./routes/category/categoryRouter.js')
 const carRouter = require('./routes/category/carRouter.js');
-
+const newsRouter = require('./routes/newsRoute.js');
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+})
 
 app.use('/', loginRouter);
 app.use('/', signupRouter);
@@ -65,5 +69,6 @@ app.use('/', logoutRouter);
 app.use('/', categoryRouter);
 app.use('/', showCategoryItemRouter);
 app.use('/', carRouter);
+app.use('/', newsRouter);
 
 app.listen(8080, () => console.log('Server is running on 8080'))
