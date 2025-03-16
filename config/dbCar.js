@@ -7,6 +7,7 @@ CREATE TABLE IF NOT EXISTS categories(
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(255) NOT NULL,
     description TEXT,
+    icon TEXT, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );`;
 
@@ -23,19 +24,19 @@ CREATE TABLE IF NOT EXISTS cars (
 `;
 
 const INSERT_CATEGORY = `
-INSERT INTO categories (name, description)
+INSERT INTO categories (name, description, icon)
 VALUES
-    ('Tesla', 'Tesla'),
-    ('Lamborghini', 'Lamborghini'),
-    ('Rolls Royce', 'Rolls Royce'),
-    ('Bugatti', 'Bugatti'),
-    ('Mercedes', 'Mercedes'),
-    ('Audi', 'Audi'),
-    ('Bentley', 'Bentley'),
-    ('Maserati', 'Maserati'),
-    ('McLaren', 'McLaren'),
-    ('Ferrari', 'Ferrari'),
-    ('Aston', 'Aston')
+    ('Tesla', 'Tesla', 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Tesla_logo.png/1200px-Tesla_logo.png'),
+    ('Lamborghini', 'Lamborghini', 'https://upload.wikimedia.org/wikipedia/en/thumb/d/df/Lamborghini_Logo.svg/360px-Lamborghini_Logo.svg.png'),
+    ('Rolls Royce', 'Rolls Royce', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/Rolls_royce_holdings_logo.svg/240px-Rolls_royce_holdings_logo.svg.png'),
+    ('Bugatti', 'Bugatti','https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Bugatti_logo.svg/440px-Bugatti_logo.svg.png' ),
+    ('Mercedes', 'Mercedes','https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Mercedes-Benz_Logo_2010.svg/440px-Mercedes-Benz_Logo_2010.svg.png' ),
+    ('Audi', 'Audi', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/92/Audi-Logo_2016.svg/440px-Audi-Logo_2016.svg.png'),
+    ('Bentley', 'Bentley', 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e4/Bentley_logo_2.svg/440px-Bentley_logo_2.svg.png'),
+    ('Maserati', 'Maserati', 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Maserati_logo_2.svg/440px-Maserati_logo_2.svg.png'),
+    ('McLaren', 'McLaren', 'https://upload.wikimedia.org/wikipedia/en/thumb/6/66/McLaren_Racing_logo.svg/440px-McLaren_Racing_logo.svg.png'),
+    ('Ferrari', 'Ferrari', 'https://upload.wikimedia.org/wikipedia/en/thumb/3/36/Prancing_horse.svg/160px-Prancing_horse.svg.png'),
+    ('Aston Martin', 'Aston Martin', 'https://upload.wikimedia.org/wikipedia/en/thumb/b/bd/Aston_Martin_Lagonda_brand_logo.png/440px-Aston_Martin_Lagonda_brand_logo.png')
     ;`;
 
 
