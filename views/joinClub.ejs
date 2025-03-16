@@ -1,10 +1,11 @@
 <%- include('./partials/header') %>
 
     <h1>Join the club</h1>
+    <p>Hin: secret123</p>
     <form class="row g-3 form-edit-product validated-form" method="POST" action="/join-club" novalidate>
         <div class="col-md-12">
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Enter the secret passcode: </span>
+                <span class="input-group-text" id="basic-addon1">Secret passcode: </span>
                 <input type="text" id="passcode" class="form-control" name="passcode" aria-label="Username"
                     aria-describedby="basic-addon1" required>
                 <div class="valid-feedback">
@@ -16,9 +17,9 @@
 
         <div class="col-12">
             <button type="submit" class="btn btn-primary"> Submit</button>
+            <a href="/categories" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
         </div>
     </form>
-    <a href="/categories" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
 
 
     <%- include('./partials/validator', {name: 'validated-form' }) %>
