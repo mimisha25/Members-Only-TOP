@@ -1,74 +1,79 @@
 <%- include('./partials/header') %>
 
+    <div class="modal-dialog" role="document">
+        <div class="modal-content bg-light shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0 ">
+                <h1 class="fw-bold mb-0 fs-2 text-dark">Sign up for free</h1>
+            </div>
 
-    <h1>Sign Up</h1>
-    <form class="row g-3 form-edit-product validated-form" method="POST" action="/sign-up" novalidate>
-        <div class="col-md-12">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">First Name: </span>
-                <input type="text" id="firstName" class="form-control" name="firstName" aria-label="Username"
-                    aria-describedby="basic-addon1" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
+            <div class="modal-body p-5 pt-0">
+                <form class=" validated-form" method="POST" action="/sign-up" novalidate>
+                    <div class="form-floating mb-3">
+                        <span class="input-group-text" id="basic-addon1">First Name: </span>
+                        <input type="text" id="firstName" class="form-control  rounded-3" name="firstName"
+                            aria-label="Username" aria-describedby="basic-addon1" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <span class="input-group-text" id="basic-addon1">Last Name: </span>
+                        <input type="text" id="lastName" class="form-control rounded-3" name="lastName"
+                            aria-label="Username" aria-describedby="basic-addon1" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <span class="input-group-text" id="basic-addon1">Enter email: </span>
+                        <input type="email" id="email" class="form-control  rounded-3" name="email"
+                            aria-label="Username" aria-describedby="basic-addon1" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                    <div class="form-floating mb-3">
+                        <span class="input-group-text" id="basic-addon1">Enter password: </span>
+                        <input type="password" id="password" class="form-control rounded-3" name="password"
+                            aria-label="Username" aria-describedby="basic-addon1" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-floating mb-3">
+                        <span class="input-group-text" id="basic-addon1">Confirm password: </span>
+                        <input type="password" id="confirmPassword" class="form-control rounded-3"
+                            name="confirmPassword" aria-label="Username" aria-describedby="basic-addon1" required>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+
+                    <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary " type="submit">Sign up</button>
+                    <small>By clicking Sign up, you agree to the terms of use.</small>
+                    <hr class="my-4">
+                    <h2 class="fs-5 fw-bold mb-3">Or use a third-party</h2>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+
+                        Sign up with Twitter
+                    </button>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-3" type="submit">
+
+                        Sign up with Facebook
+                    </button>
+                    <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-3" type="submit">
+
+                        Sign up with GitHub
+                    </button>
+                </form>
             </div>
         </div>
-
-
-
-        <div class="col-md-12">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Last Name: </span>
-                <input type="text" id="lastName" class="form-control" name="lastName" aria-label="Username"
-                    aria-describedby="basic-addon1" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-12">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Enter email: </span>
-                <input type="email" id="email" class="form-control" name="email" aria-label="Username"
-                    aria-describedby="basic-addon1" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-
-
-
-        <div class="col-md-12">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Enter password: </span>
-                <input type="password" id="password" class="form-control" name="password" aria-label="Username"
-                    aria-describedby="basic-addon1" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-12">
-            <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Confirm password: </span>
-                <input type="password" id="confirmPassword" class="form-control" name="confirmPassword"
-                    aria-label="Username" aria-describedby="basic-addon1" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary"> Submit</button>
-        </div>
-    </form>
-    <a href="/" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
+    </div>
 
     <%- include('./partials/validator', {name: 'validated-form' }) %>
         <%- include('./partials/footer') %>

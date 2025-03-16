@@ -1,8 +1,9 @@
 <%- include('../partials/header') %>
 
 
-    <h1>Edit the product</h1>
-    <form class="row g-3 form-edit-product validated-form" method="POST" action="/cars/add" novalidate>
+    <h1>Add the car</h1>
+    <form class="row g-3 form-edit-product validated-form bg-light p-3 my-3" method="POST" action="/cars/add"
+        novalidate>
         <div class="col-md-12">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Title: </span>
@@ -62,10 +63,11 @@
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary"> Submit</button>
+            <a role="submit" class="btn btn-primary"> Submit</a>
+            <a href="/products" class="btn btn-success" role="button">Cancel</a>
+
         </div>
     </form>
-    <a href="/products" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
 
 
     <%- include('../partials/validator', {name: 'validated-form' }) %>

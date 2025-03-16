@@ -1,7 +1,8 @@
 <%- include('../partials/header') %>
-    <h1>Edit the category</h1>
+    <h1>Add the category</h1>
 
-    <form class="row g-3 form-edit-product validated-form" method="POST" action="/categories/add" novalidate>
+    <form class="row g-3 form-edit-product validated-form bg-light p-3 my-3" method="POST" action="/categories/add"
+        novalidate>
         <div class="col-md-12">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Name: </span>
@@ -29,10 +30,11 @@
 
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary"> Submit</button>
+            <a role="submit" class="btn btn-primary"> Submit</a>
+            <a href="/categories" class="btn btn-success" role="button">Cancel</a>
+
         </div>
     </form>
-    <a href="/categories" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
 
 
     <%- include('../partials/validator', {name: 'validated-form' }) %>

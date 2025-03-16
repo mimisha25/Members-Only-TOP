@@ -1,8 +1,9 @@
 <%- include('../partials/header') %>
 
 
-    <h1>Edit the product</h1>
-    <form class="row g-3 form-edit-product" method="POST" action="/cars-details/<%=car.id%>?_method=PATCH">
+    <h1>Edit the car</h1>
+    <form class="row g-3 form-edit-product bg-light p-3 my-3" method="POST"
+        action="/cars-details/<%=car.id%>?_method=PATCH">
         <div class="col-md-12">
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Title: </span>
@@ -38,10 +39,10 @@
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary"> Submit</button>
+            <a role="submit" class="btn btn-primary"> Submit</a>
+            <a href="/cars" class="btn btn-success" role="button">Cancel</a>
         </div>
     </form>
-    <a href="/cars" class="btn btn-success cancel-product-edit" role="button">Cancel</a>
 
 
 
