@@ -18,11 +18,11 @@ async function isAdmin(email) {
 }
 
 
-async function member() {
+async function member(id) {
     try {
         const { rows } = await pool.query(
             'UPDATE users SET membership_status = TRUE WHERE id = $1',
-            [req.user.id]);
+            [id]);
         return rows[0];
     } catch (e) {
         console.error('Error updating status of membership: ', e);
