@@ -1,46 +1,61 @@
 <%- include('../partials/header') %>
 
-    <h1 style="color: black; text-align: center;">Products</h1>
-    <%if(admin){%>
-        <a href="/cars/add" role="button" class="btn btn-warning">Add product</a>
-        <%}%>
-            <div class="products d-flex flex-wrap justify-content-evenly  row-gap-3">
-
-                <% cars.forEach(car=> { %>
-
-                    <div class="col">
-                        <div class="card  h-100 mx-auto p-4" style="width: 23rem;">
-                            <div class="img-card">
-                                <img src="<%= car.image %>" class="card-img-top img-thumbnail" alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title  text-center">
-                                    <%= car.title %>
-                                </h5>
-                                <p class="card-text text-center">
-                                    <%= car.description.length> 100 ? car.description.substring(0, 100) + '...'
-                                        :
-                                        car.description %>
-                                </p>
-
-                                <div class="card-footer text-body-secondary">
-                                    <button type="button" class="btn btn-warning m-1">
-                                        <%=car.category_name%>
-                                    </button>
-
-
-                                    <a href="/car-details/<%= car.id %>" class="btn btn-primary  m-1">
-                                        Details <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                            fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                                            <path fill-rule="evenodd"
-                                                d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
-                                        </svg></a>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <% }) %>
+    <section class="py-4 text-center container section-title">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">Cars</h1>
+                <p class="lead text-lead">From everyday commuters to adventure-ready vehicles, our collection of cars
+                    offers the perfect balance of style, efficiency, and performance. Explore a wide range of models
+                    designed to meet your needs, whether you're after comfort, economy, or excitement on the road.</p>
+                <%if(admin){%><a href="/cars/add" role="button" class="btn btn-primary">Add car</a>
+                    <%}%>
             </div>
+        </div>
+    </section>
 
-            <%- include('../partials/footer') %>
+
+
+
+    <div class="products d-flex flex-wrap justify-content-evenly  row-gap-3">
+
+        <% cars.forEach(car=> { %>
+
+            <div class="col">
+
+                <div class="card  h-100 mx-auto p-4 border border-0" style="width: 23rem;">
+                    <div class="img-card">
+                        <img src="<%= car.image %>" class="card-img-top object-fit-cover" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title  text-center">
+                            <%= car.title %>
+                        </h5>
+                        <p class="card-text text-center">
+                            <%= car.description.length> 100 ? car.description.substring(0, 100) + '...'
+                                :
+                                car.description %>
+                        </p>
+
+                        <div class="card-footer text-body-secondary border border-0">
+                            <a role="button" class="btn btn-warning">
+
+                                <%=car.ca_name%>
+
+                            </a>
+
+
+                            <a href="/car-details/<%= car.id %>" class="btn btn-primary  m-1">
+                                Details <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd"
+                                        d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8" />
+                                </svg></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+    </div>
+
+    <%- include('../partials/footer') %>
