@@ -1,21 +1,14 @@
 const db = require('../../../config/queries');
 require('dotenv').config();
 const bcrypt = require('bcryptjs')
-
+const ExpressError = require('../../../utils/ExpressError');
 async function signup(req, res) {
-    try {
-        const { firstName, lastName, email, password, confirmPassword } = req.body;
-        if (password !== confirmPassword) return res.send('Password do not match!');
-        const hashedPassword = await bcrypt.hash(password, 10);
-        const user = await db.signup(firstName, lastName, email, hashedPassword);
-        if (!user) return res.render('Error creating user');
-        res.redirect('/login');
-
-    } catch (e) {
-        console.error('Error in creating user controller: ', e);
-        res.status(500).send('Error in creating user controller');
-    }
-
+    const { firstName, lastName, email, password, confirmPassword } = req.body;
+    if (password !== confirmPassword) throw new ExpressError('Password do not match!', 400);
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const user = await db.signup(firstName, lastName, email, hashedPassword);
+    if (!user) throw new ExpressError('Error creating user .', 400);
+    res.redirect('/login');
 }
 
 module.exports = {
