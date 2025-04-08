@@ -2,61 +2,49 @@
 const db = require('../../config/queriesCar');
 
 async function getCategories(req, res) {
-    try {
-        const admin = req.user.admin;
-        const categories = await db.getCategories();
-        res.render('category/categories', { categories, admin })
-    } catch (e) {
-        console.log('Error in getting categories: ', e)
-        throw e;
-    }
+    const admin = req.user && req.user.admin ? req.user.admin : false;
+    const categories = await db.getCategories();
+    res.render('category/categories', { categories, admin })
 }
 
 async function archiveCategory(req, res) {
-    try {
-        const { id } = req.params;
-        await db.archiveCategoryById(id);
-        res.redirect('/categories');
-    } catch (e) {
-        console.error('Error archiving category: ', e);
-        res.status(500).render('partials/modal', { text: 'The category has products, it cannot be archieved', link: '/categories' });
+    const { id } = req.params;
+    const hasCars = db.hasProductsInCategory(id);
+    if (hasCars) {
+        req.flash('error', 'Cannot archieve category with cars inside');
+        return res.redirect('/categories');
     }
+    await db.archiveCategoryById(id);
+    req.flash('success', 'Category archieved successfully');
+
+    res.redirect('/categories');
 }
 
 
 
 async function deletion(req, res) {
-    try {
-        const { id } = req.params;
-        const hasCars = await db.hasProductsInCategory(id);
-        if (hasCars) {
-            await db.setPreventDeletionFlag(id);
-            res.redirect('/categories');
-        } else {
-            await db.deleteCategory(id);
-            res.redirect('/categories');
-        }
-    } catch (e) {
-        console.error('Error preventing deletion: ', e);
-        res.status(500).render('partials/modal', { text: 'The category has products, it cannot be deleted', link: '/categories' });
+    const { id } = req.params;
+    const hasCars = await db.hasProductsInCategory(id);
+    if (hasCars) {
+        await db.setPreventDeletionFlag(id);
+        req.flash('error', 'Cannot delete category with cars inside');
+        return res.redirect('/categories');
+    } else {
+        await db.deleteCategory(id);
+        req.flash('success', 'Category deleted successfully');
+        res.redirect('/categories');
     }
+
 }
 async function createCategoryPost(req, res) {
     const { name, description } = req.body;
-    try {
-        await db.insertCategory(name, description);
-        res.redirect('/categories');
-    } catch (e) {
-        res.status(400).send('Error inserting product: ' + e.message);
-    }
+    await db.insertCategory(name, description);
+    req.flash('success', 'New category has been added!');
+    res.redirect('/categories');
+
 }
 async function createCategoryGet(req, res) {
-    try {
-        res.render('category/addCategory', { title: "Create Product" });
-    } catch (e) {
-        console.error('Error fetching categories:', e);
-        res.status(500).send('Error fetching categories');
-    }
+    res.render('category/addCategory', { title: "Create Product" });
 }
 
 
