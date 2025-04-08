@@ -9,13 +9,26 @@ const path = require('path')
 const methodOverride = require('method-override');
 require('dotenv').config();
 const app = express();
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+const ExpressError = require('./utils/ExpressError.js')
+const flash = require('connect-flash');
 app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: true }));
-app.use(express.static(path.join(__dirname, './public')));
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        httpOnly: true,
+        secure: false,
+        maxAge: 24 * 60 * 60 * 1000
+    }
+}));
+app.use(express.static(path.join(__dirname, './public')));
+app.use(flash());
 
 passport.use(new LocalStrategy(
     (username, password, done) => {
@@ -42,6 +55,12 @@ passport.deserializeUser((id, done) => {
     });
 });
 app.use(passport.session());
+
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+})
 
 const loginRouter = require('./routes/forum/login/loginRouter.js');
 const joinclubRouter = require('./routes/forum/joinClub/joinclubRouter.js');
@@ -71,4 +90,14 @@ app.use('/', showCategoryItemRouter);
 app.use('/', carRouter);
 app.use('/', newsRouter);
 
+app.all(/(.*)/, (req, res, next) => {
+    next(new ExpressError('Page Not Found', 404))
+})
+
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    if (!err.message) err.message = "Something is wrong!";
+    res.status(statusCode).render('error', { err });
+
+})
 app.listen(8080, () => console.log('Server is running on 8080'))
