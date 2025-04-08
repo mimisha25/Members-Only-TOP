@@ -33,7 +33,7 @@
         <div class="col-md-4">
             <div class="input-group mb-3">
                 <span class="input-group-text">Category</span>
-                <select id="category_name" name="category_id" class="form-control" required>
+                <select id="category_name" name="category_id" class="form-control">
                     <% categories.forEach(function(category) { %>
                         <option value="<%= category.id %>">
                             <%= category.name %>
@@ -63,7 +63,7 @@
         </div>
 
         <div class="col-12">
-            <a role="submit" class="btn btn-primary"> Submit</a>
+            <button type="submit" class="btn btn-primary"> Submit</button>
             <a href="/products" class="btn btn-success" role="button">Cancel</a>
 
         </div>
@@ -71,5 +71,4 @@
 
 
     <%- include('../partials/validator', {name: 'validated-form' }) %>
-
         <%- include('../partials/footer') %>
