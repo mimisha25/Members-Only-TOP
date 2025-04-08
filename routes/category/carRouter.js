@@ -1,13 +1,15 @@
 const { Router } = require('express');
 const carRouter = Router();
 const userController = require('../../controllers/category/carController');
+const catchAsync = require('../../utils/catchAsync');
 
-carRouter.get('/cars', userController.getCars);
-carRouter.get('/car-details/:id', userController.getCarDetails);
-carRouter.get('/car-details/:id/edit', userController.getCarEdit);
-carRouter.patch('/cars-details/:id', userController.getCarUpdate);
-carRouter.delete('/cars-details/:id', userController.deleteCar);
 
-carRouter.get('/cars/add', userController.createCarGet);
-carRouter.post('/cars/add', userController.createCarPost);
+carRouter.get('/cars', catchAsync(userController.getCars));
+carRouter.get('/car-details/:id', catchAsync(userController.getCarDetails));
+carRouter.get('/car-details/:id/edit', catchAsync(userController.getCarEdit));
+carRouter.patch('/cars-details/:id', catchAsync(userController.getCarUpdate));
+carRouter.delete('/cars-details/:id', catchAsync(userController.deleteCar));
+
+carRouter.get('/cars/add', catchAsync(userController.createCarGet));
+carRouter.post('/cars/add', catchAsync(userController.createCarPost));
 module.exports = carRouter;
