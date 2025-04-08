@@ -8,6 +8,8 @@ CREATE TABLE IF NOT EXISTS categories(
     name VARCHAR(255) NOT NULL,
     description TEXT,
     icon TEXT, 
+    status VARCHAR(50),
+    prevent_deletion BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );`;
 
