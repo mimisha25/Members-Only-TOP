@@ -1,20 +1,14 @@
 const db = require('../../../config/queries');
+const ExpressError = require('../../../utils/ExpressError');
 
 async function isAdmin(req, res) {
-    try {
-        const { passcode } = req.body;
-        if (!req.user || !req.user.email) {
-            return res.status(401).send('User is not authenticated');
-        }
-        if (passcode === 'admin') {
-            const updateUser = await db.isAdmin(req.user.email);
-            if (!updateUser) return res.status(400).send('User not found or already an admin');
-            res.redirect('/forum');
-        } else res.send('Invalid passcode');
-    } catch (e) {
-        console.error('Error in is admin: ', e);
-        res.status(500).send('Error fetching admin');
-    }
+    const { passcode } = req.body;
+    if (!req.user || !req.user.email) throw new ExpressError('User is not authenticated', 401);
+    if (passcode === 'admin') {
+        const updateUser = await db.isAdmin(req.user.email);
+        if (!updateUser) throw new ExpressError('User not found or already an admin', 400);
+        res.redirect('/forum');
+    } else res.send('Invalid passcode');
 }
 
 
