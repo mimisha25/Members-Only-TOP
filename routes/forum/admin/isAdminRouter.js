@@ -3,6 +3,7 @@ const isAdminRouter = Router();
 require('dotenv').config();
 const controller = require('../../../controllers/forum/admin/isAdminController');
 const isAdmin = require('../../authMiddleware').isAdmin;
+const catchAsync = require('../../../utils/catchAsync');
 
 isAdminRouter.get('/is-admin', (req, res) => {
     if (req.isAuthenticated() && req.user.admin) {
@@ -13,6 +14,6 @@ isAdminRouter.get('/is-admin', (req, res) => {
         return res.render('isAdmin');
     }
 });
-isAdminRouter.post('/is-admin', controller.isAdmin);
+isAdminRouter.post('/is-admin', catchAsync(controller.isAdmin));
 
 module.exports = isAdminRouter;
