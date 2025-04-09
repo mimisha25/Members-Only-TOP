@@ -15,10 +15,11 @@
                     <%if(admin){%>
                         <a href="/car-details/<%=car.id%>/edit" class="edit-btn btn btn-warning  btn-sm"
                             role="button">Edit</a>
-                        <form method="POST" action="/car-details/<%= car.id %>?_method=DELETE">
+                        <form method="POST" action="/cars-details/<%= car.id %>?_method=DELETE">
                             <button class="btn btn-danger  btn-sx" type="submit"> Delete</button>
                             <%}%>
-                        </form> <a href="/cars" role="button" class="home-btn btn btn-primary  btn-sm">Go Back
+                        </form>
+                        <a href="/cars" role="button" class="home-btn btn btn-primary  btn-sm">Go Back
                             Home</a>
 
                 </div>
