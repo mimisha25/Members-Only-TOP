@@ -1,0 +1,11 @@
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const successMessage = '<%= success %>';
+        const errorMessage = '<%= error %>';
+
+        if (successMessage || errorMessage) {
+            const modal = new bootstrap.Modal(document.getElementById('modalSheet'));
+            modal.show();
+        }
+    });
+</script>
