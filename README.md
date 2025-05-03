@@ -19,6 +19,7 @@ This web application is built using a modern tech stack, including **Node.js** a
 |   Security | BscryptJs  |
 |   Configuration | Dotenv   |
 |   Database | PostgreSQL   |
+|   Database Storage | Neon   |
 
 ## Features 💡
 - **Back-End**: Utilizes Node.js for server-side operations, with Express for simplifying routing and middleware management. Sensitive information and keys are securely stored using dotenv.
@@ -34,7 +35,8 @@ This web application is built using a modern tech stack, including **Node.js** a
   
 #### **Frontend & Design**:
 - The app is designed with **CSS** and **Bootstrap**, using components like forms, navbars, and cards.
-- Icons are sourced from **Bootstrap Icons** and images are sourced from [Unsplash](https://unsplash.com/), while product images are managed via [Cloudinary](https://cloudinary.com/?utm_campaign=1329&utm_content=instapagelogocta-selfservetest) for efficient loading and storage.
+- Icons are sourced from **Bootstrap Icons** and images are sourced from [Unsplash](https://unsplash.com/),[Lamborghini](https://www.lamborghini.com), [Tesla](https://www.tesla.com),
+[Wikipedia](https://www.wikipedia.org), while product images are managed via [Cloudinary](https://cloudinary.com) for efficient loading and storage.
 - The app is fully **responsive**, optimized for desktop, tablet, and mobile devices, ensuring a smooth and intuitive user experience on any screen size.
 - **Validation**: Express Validator is utilized for input validation, ensuring clean, user-friendly forms with Bootstrap styling.
 - **Frontend Dynamics**: JavaScript is employed to handle dynamic changes on the front-end, enhancing user interaction.
@@ -93,3 +95,11 @@ npm run data
 ```
 npm run dev
 ```
+
+## Deployment ✅
+The application is deployed on Render. 
+Please, visit the live website here: [Live Application](https://members-only-car.onrender.com)
+
+
+## License ©
+The project is licensed under MIT License.
